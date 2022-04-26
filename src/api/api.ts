@@ -1,27 +1,14 @@
 export const GET_SEARCH_DATA_API = ({
-                        search,
-                    }: SearchAPIRequestParams) => {
+                                        yearStart,
+                                        yearEnd
+                                    }: SearchAPIRequestParams) => {
     //TODO: Use from env file
-    const REQUEST_URL = 'http://www.omdbapi.com/';
-    const API_KEY = '67361726';
+    const REQUEST_URL = 'https://images-api.nasa.gov/search';
 
-    return fetch(`${REQUEST_URL}?apikey=${API_KEY}&s=${search.toLowerCase()}`).then((response) => response.json());
+    return fetch(`${REQUEST_URL}?year_start=${yearStart}&year_end=${yearEnd}&media_type=image`).then((response) => response.json());
 };
 
 export type SearchAPIRequestParams = {
-    search: string;
-}
-
-export const GET_DETAILS_API = ({
-                        id,
-                    }: DetailsAPIRequestParams) => {
-    //TODO: Use from env file
-    const REQUEST_URL = 'http://www.omdbapi.com/';
-    const API_KEY = '67361726';
-
-    return fetch(`${REQUEST_URL}?apikey=${API_KEY}&i=${id.toLowerCase()}`).then((response) => response.json());
-};
-
-export type DetailsAPIRequestParams = {
-    id: string;
+    yearStart: string;
+    yearEnd: string;
 }

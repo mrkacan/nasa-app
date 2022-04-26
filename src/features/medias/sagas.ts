@@ -10,7 +10,6 @@ function* handler() {
 
 function* getMedias(action: types.GetMediasAction) {
     try {
-        // @ts-ignore
         const response: types.MediasAPIResponse = yield call(GET_SEARCH_DATA_API, {
             yearEnd: action.payload.yearEnd,
             yearStart: action.payload.yearStart,
@@ -18,7 +17,6 @@ function* getMedias(action: types.GetMediasAction) {
         if (response) {
             const mediaData: types.MediaItem[] = yield all(
                 response?.collection?.items?.map(function* (media) {
-                    // @ts-ignore
                     const images = yield call(() => fetch(media?.href).then((response) => response.json()))
                     return {
                         ...media?.data?.[0],
